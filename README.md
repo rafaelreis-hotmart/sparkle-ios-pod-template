@@ -18,7 +18,7 @@ You will want to work with the ruby classes inside the `setup` folder, and the e
 
 ## Commands
 
-* `pod lib create uUpload --template-url=/Users/rafael.reis/Downloads/template/sparkle --verbose`
+* `pod lib create uUpload --template-url=/Users/rafael.reis/Downloads/template/sparkle-ios-pod-template --verbose`
 * `pod lib create uLibrary --template-url=/path/to/template --verbose`: creates your library using this custom local pod template with detailed log messages.
 
 * `pod lib create uLibrary --template-url=url/of/template/repository/`: creates your library using a pod template host in a git repository.
