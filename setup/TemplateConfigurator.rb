@@ -85,9 +85,9 @@ module Pod
       add_pods_to_podfile
       customise_prefix
       rename_classes_folder
-      ensure_carthage_compatibility
-      reinitialize_git_repo
-      run_pod_install
+      #ensure_carthage_compatibility
+      #reinitialize_git_repo
+      #run_pod_install
 
       @message_bank.farewell_message
     end
@@ -173,11 +173,11 @@ module Pod
       FileUtils.mv "Pod", @pod_name
     end
 
-    def reinitialize_git_repo
-      `rm -rf .git`
-      `git init`
-      `git add -A`
-    end
+    # def reinitialize_git_repo
+    #   `rm -rf .git`
+    #   `git init`
+    #   `git add -A`
+    # end
 
     def validate_user_details
         return (user_email.length > 0) && (user_name.length > 0)
