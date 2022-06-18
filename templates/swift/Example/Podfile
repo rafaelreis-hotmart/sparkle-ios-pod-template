@@ -1,13 +1,58 @@
+platform :ios, '12.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+load '../../../Sources.rb'
+
+hotmart_sources
+
+inhibit_all_warnings!
 use_frameworks!
 
-platform :ios, '9.0'
-
 target '${POD_NAME}_Example' do
-  pod '${POD_NAME}', :path => '../'
+  pod '${POD_NAME}', path: '../', testspecs: ['Tests']
+  pod '${POD_NAME}Interface', path: '../'
+  
+  #  ########################
+  #  # Hotmart Org          #
+  #  ########################
 
-  target '${POD_NAME}_Tests' do
-    inherit! :search_paths
+  hotmart_pods
+  
+  ########################
+  # Internal Development #
+  ########################
+  
+  pod 'uUI', path: '../../../Core/uUI/'
+  pod 'uFoundation', path: '../../../Core/uFoundation/'
+  pod 'uLogger', path: '../../../Core/uLogger/'
+  pod 'RouterService', path: '../../../Core/uRouterService/'
+  pod 'RouterServiceInterface', path: '../../../Core/uRouterService/'
+  pod 'uAnalytics' , path: '../../../Core/uAnalytics/'
+  pod 'uAnalyticsInterface', path: '../../../Core/uAnalytics/'
+  pod 'uServicesInterface', path: '../../../Core/uServices/'
+  pod 'uNetwork', path: '../../../Core/uNetwork'
+  pod 'uNetworkInterface', path: '../../../Core/uNetwork/'
+  pod 'uStrings', path: '../../../Core/uStrings/'
+  pod 'uRemoteConfig', path: '../../../Core/uRemoteConfig'
+  pod 'uRemoteConfigInterface', path: '../../../Core/uRemoteConfig'
+  
+  # needed for getting a light version of uTestingTools
+  pod 'uTestingTools', path: '../../../Core/uTestingTools/uTestingToolsLight.podspec'
 
-    ${INCLUDED_PODS}
+  
+  #########################
+  #       Third Party     #
+  #########################
+  
+  # Third Party libraries here
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+    end
   end
 end
+
